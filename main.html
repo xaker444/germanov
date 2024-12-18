@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Germanov Biography</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            height: 100%;
+            font-family: Arial, sans-serif;
+            color: white;
+        }
+        .background-video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+        .start-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
+        }
+        .start-screen h1 {
+            font-size: 2.5em;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+            color: white;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+            animation: glow 1.5s infinite alternate;
+        }
+        .start-screen p {
+            font-size: 1.2em;
+            color: rgba(255, 255, 255, 0.8);
+        }
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+            }
+            to {
+                text-shadow: 0 0 40px rgba(255, 255, 255, 1);
+            }
+        }
+        .content {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            text-align: center;
+            animation: fadeIn 2s ease-in-out;
+        }
+        .avatar {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-bottom: 20px;
+            border: 3px solid white;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+            animation: pulse 1.5s infinite alternate;
+        }
+        .avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .nickname {
+            font-size: 3em;
+            font-weight: bold;
+            text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            animation: pulse 1.5s infinite alternate;
+        }
+        .social-links {
+            margin-top: 30px; /* Отступ сверху для иконок соцсетей */
+        }
+        .social-links a {
+            margin: 10px;
+            color: white;
+            font-size: 2em;
+            text-decoration: none;
+            transition: transform 0.3s, color 0.3s;
+        }
+        .social-links a:hover {
+            transform: scale(1.3);
+            color: #f0f0f0;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes pulse {
+            from { text-shadow: 0 0 20px rgba(255, 255, 255, 0.8); }
+            to { text-shadow: 0 0 40px rgba(255, 255, 255, 1); }
+        }
+    </style>
+</head>
+<body>
+    <video class="background-video" autoplay muted loop>
+        <source src="videoplayback.mp4" type="video/mp4">
+        Ваш браузер не поддерживает видео.
+    </video>
+    <div class="start-screen" id="start-screen" onclick="enterPage()">
+        <h1>Нажми, чтобы войти</h1>
+        <p>Добро пожаловать на мою страницу!</p>
+    </div>
+    <div class="content" id="content">
+        <div class="avatar">
+            <img src="nege.gif" alt="Avatar">
+        </div>
+        <div class="nickname">Germanov</div>
+        <div class="social-links">
+            <a href="https://steamcommunity.com/id/germanov228/" target="_blank">
+                <i class="fab fa-steam"></i>
+            </a>
+            <a href="https://t.me/makrosik" target="_blank">
+                <i class="fab fa-telegram"></i>
+            </a>
+            <a href="https://www.youtube.com/@inkwewg" target="_blank">
+                <i class="fab fa-youtube"></i>
+            </a>
+            <a href="https://www.tiktok.com/@achtung228" target="_blank">
+                <i class="fab fa-tiktok"></i>
+            </a>
+        </div>
+    </div>
+    <audio id="background-music" loop>
+        <source src="vponosike.mp3" type="audio/mpeg">
+        Ваш браузер не поддерживает аудио.
+    </audio>
+    <script>
+        function enterPage() {
+            const startScreen = document.getElementById('start-screen');
+            const content = document.getElementById('content');
+            const audio = document.getElementById('background-music');
+
+            startScreen.style.opacity = '0';
+            startScreen.style.visibility = 'hidden';
+            setTimeout(() => {
+                startScreen.style.display = 'none';
+                content.style.display = 'flex';
+                audio.play().catch(error => console.error('Ошибка воспроизведения:', error));
+            }, 500);
+        }
+    </script>
+</body>
+</html>
